@@ -58,9 +58,15 @@ for i = 1:N
         % model = mphload(COM_fullfile);
 
         % Parameter setting in .mph
-
+        R_out_str = [num2str(D_out/2) '[mm]']; % **
         model.param.set('C_rate', C_rate);
-        model.param.set('D_out', D_out);
+        model.param.set('R_out', R_out_str); %**
+        
+        % check parameters **
+        if i ==1 && j ==3
+            mphnavigator;
+            model.param.get('C_rate')
+        end
 
         % Run mph model
         model.study('std1').run
